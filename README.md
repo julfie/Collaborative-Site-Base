@@ -1,10 +1,11 @@
-# Collaborative-Site-Base
+# Collaborative-Site-Base #
+- - - -
 
-A collaboration on the skeleton of a collaboration based site!
-Worked on by:
-    Juliann Fields
-    Evan Byrd
-    Obed Appiah-Agyeman
+<p>A collaboration on the skeleton of a collaboration based site!</p>
+<p>Worked on by:</p>
+    * Juliann Fields
+    * Evan Byrd
+    * Obed Appiah-Agyeman
 
-The project began as an independent stody under Professor Heimann at Carnegie Mellon University
-The final projects will be linked below when complete
+<p>The project began as an independent stody under Professor Heimann at Carnegie Mellon University</p>
+<p>The final projects will be linked below when complete</p>
