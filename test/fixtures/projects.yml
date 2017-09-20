@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  user_id: 1
+  content_id: 1
+  project_role_id: 1
+  type: 
+  genre: MyString
+  active: false
+
+two:
+  title: MyString
+  user_id: 1
+  content_id: 1
+  project_role_id: 1
+  type: 
+  genre: MyString
+  active: false
