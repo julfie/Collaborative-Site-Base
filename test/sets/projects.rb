@@ -1,7 +1,7 @@
 module Contexts
     module Projects
       def create_projects
-        @Eon            = FactoryGirl.create(:project, owner_id: @evan,)
+        @Eon            = FactoryGirl.create(:project, owner_id: @evan)
         @EndersGame     = FactoryGirl.create(:project, owner_id: @juliann, title: "Ender's Game", genre: "science fiction")
         @EndersS        = FactoryGirl.create(:project, owner_id: @jim, title: "Ender's Shadow", genre: "science fiction")
         @Eragon         = FactoryGirl.create(:project, owner_id: @joe, title: "Eragon", genre: "fantasy", start_date: 1.year.ago.to_date , end_date: Date.today, status: "finished")

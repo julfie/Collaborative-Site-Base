@@ -10,6 +10,7 @@ class UserRolesController < ApplicationController
   # GET /user_roles/1
   # GET /user_roles/1.json
   def show
+    
   end
 
   # GET /user_roles/new

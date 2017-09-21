@@ -3,7 +3,7 @@ module Contexts
     # Context for both customer and employee users
 
      def create_users
-      @evan = FactoryGirl.create(:user)
+      @evan = FactoryGirl.create(:user, f_name: "E", l_name: "Man", username: "eman", email: "eman@cmuis.net", phone: "443-410-4122")
       @ev = FactoryGirl.create(:user, f_name: "Ev", l_name: "Smith", username: "esmith", email: "esmith@esmith.com", phone: "412.214.4124", active: false)
       @joe = FactoryGirl.create(:user, f_name: "Joe", l_name: "Shmoe", username: "jshmoe", email: "jshmoe@cmuis.net", phone: "(443) 410-4122")
       @jim = FactoryGirl.create(:user, f_name: "Jim", l_name: "Sim", username: "jsim", email: "jsim@andrew.cmu.edu")

@@ -5,11 +5,20 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @artists = @users.user_role.map { |ur| ur.role_id == @artists }
+    @mixer = @users.user_role.map { |ur| ur.role_id == @mixer }
+    @producer = @users.user_role.map { |ur| ur.role_id == @producer }
+    @instrumentalist = @users.user_role.map { |ur| ur.role_id == @instrumentalist }
+
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @projects_roles = User.projects_roles
+    @projects = User.projects_roles.map { |pr| pr.projects  }
+    #@messages = 
+
   end
 
   # GET /users/new

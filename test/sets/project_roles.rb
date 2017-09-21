@@ -1,7 +1,7 @@
 module Contexts
     module Project_Roles
       def create_project_roles
-        @p21     = FactoryGirl.create(:project_role)
+        @p21     = FactoryGirl.create(:project_role, project_id: @ml, role_id: @mixer, user_id: @bobby, invite_num: 5)
         @pr2     = FactoryGirl.create(:project_role, project_id: @EndersGame, role_id: @writer, user_id: @jim, invite_num: 2)
         @pr3     = FactoryGirl.create(:project_role, project_id: @EndersS, role_id: @artist, user_id: nil, invite_num: 3)
     end

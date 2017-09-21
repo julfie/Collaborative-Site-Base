@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
 	  # Relationships
 	  has_many :user_roles
-	  # has_many :project_roles
+	  has_many :project_roles
 	  # Scopes
 	  scope :alphabetical,  -> { order(:l_name).order(:f_name) }
 	  scope :active,        -> { where(active: true) }

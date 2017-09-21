@@ -23,6 +23,7 @@ FactoryGirl.define do
   end
 
   factory :project do
+    owner_id @bobby
     proj_description "A girl who pretends to be a boy because dragons and destiny"
     genre "fantasy"
     title "Eon"
