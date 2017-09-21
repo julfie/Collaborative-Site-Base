@@ -3,9 +3,7 @@ require 'test_helper'
 class ProjectTest < ActiveSupport::TestCase
   # relationships macros...
   should belong_to(:owner)
-  # should have_many(:project_roles)
-  # should have_many(:roles).through(:project_roles)
-  # should have_many(:users).through(:project_roles)
+  should have_many(:project_roles)
 
   # validation macros...
   should validate_presence_of(:title)
@@ -15,8 +13,6 @@ class ProjectTest < ActiveSupport::TestCase
   should validate_uniqueness_of(:title)
   should validate_inclusion_of(:status).in_array(%w[active hiatus finished cancelled])
   should validate_inclusion_of(:preview_level).in_array(%w[hidden by_invitation preview published])
-  # should validate_date :start_date, :on_or_before => :today
-  # should validate_date :end_date, :after => :start_date, :after_message => "end date cannot be before start date", :allow_nil
 
   # additional tests for status (not essential)
   should allow_value("active").for(:status)
@@ -56,6 +52,7 @@ class ProjectTest < ActiveSupport::TestCase
       create_users
       create_projects
       @tell_me.owner_id = @evan.id
+      @tell_me.save!
     end
 
     teardown do 
@@ -117,20 +114,24 @@ class ProjectTest < ActiveSupport::TestCase
     end
 
     should "set end date of cancelled or completed project to today" do
-      assert_equal "active", @tell_me.status
-      assert_equal nil, @tell_me.end_date
-      @tell_me.status = "cancelled"
-      assert_equal Date.today, @tell_me.end_date
+      @cancel_project = FactoryGirl.build(:project, title: "Cancelled Project", category: "movie", genre: "thriller", status: "active", start_date: 1.day.ago)
+      assert_equal nil, @cancel_project.end_date
+      @cancel_project.status = "cancelled"
+      @cancel_project.save!
+      assert_equal Date.today, @cancel_project.end_date
+      @cancel_project.destroy
 
-      @tell_me.status = "active"
-      @tell_me.end_date = nil
-      @tell_me.status = "finished"
-      assert_equal Date.today, @tell_me.end_date
+      @finish_project = FactoryGirl.build(:project, title: "Finished Project", category: "movie", genre: "action", status: "active", start_date: 1.day.ago)
+      assert_equal nil, @finish_project.end_date
+      @finish_project.status = "finished"
+      @finish_project.save!
+      assert_equal Date.today, @finish_project.end_date
+      @finish_project.destroy
     end
 
     should "verify project is not already in the system" do
       # uniqueness is Title+Owner
-      @bad_project = FactoryGirl.build(:project)
+      @bad_project = FactoryGirl.build(:project, owner_id: @evan.id)
       assert_equal false, @bad_project.valid?
     end
 

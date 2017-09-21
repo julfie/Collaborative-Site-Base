@@ -3,7 +3,7 @@ FactoryGirl.define do
 		subject "Greetings"
 		body "Hello, my name is Evan"
 		read_status true
-		send_date Date.today
+		send_date 3.days.ago
 		flagged false
 	end
 
