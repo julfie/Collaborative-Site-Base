@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
 	scope :chronological, -> { order('start_date') }
 	scope :active, -> { where('status = ?', 'active') }
 	scope :completed, -> { where('status = ?', 'finished') }
+	scope :by_owner, -> { joins(:owner).order('users.last_name').order('users.first_name')}
 	scope :for_owner, -> (owner_id) { joins(:owner).where("users.id = ?", owner_id)}
 	scope :for_category, -> (category) { where('category = ?', category) }
 	scope :for_genre, -> (genre) { where('genre = ?', genre) }

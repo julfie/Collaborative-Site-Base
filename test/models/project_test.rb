@@ -53,6 +53,12 @@ class ProjectTest < ActiveSupport::TestCase
       create_projects
       @tell_me.owner_id = @evan.id
       @tell_me.save!
+      @hunger_games.owner_id = @ev.id
+      @hunger_games.save!
+      @light.owner_id = @jim.id
+      @light.save!
+      @all_of_the_lights.owner_id = @joe.id
+      @all_of_the_lights.save!
     end
 
     teardown do 
@@ -74,13 +80,18 @@ class ProjectTest < ActiveSupport::TestCase
     end
 
     # test scope alphabetical...
-    should "show three projects in alphabetical order" do
+    should "show four projects in alphabetical order" do
       assert_equal ["All Of The Lights", "Hunger Games", "Light", "Tell Me"], Project.alphabetical.map{|p| p.title}
     end
 
     # test scope chronological...
-    should "show three projects in chronological order" do
+    should "show four projects in chronological order" do
       assert_equal ["All Of The Lights", "Hunger Games", "Light", "Tell Me"], Project.chronological.map{|p| p.title}
+    end
+
+    # test scope by_owner...
+    should "show four projects ordered by owners" do
+      assert_equal ["Tell Me", "All Of The Lights", "Light", "Hunger Games"], Project.by_owner.map{|p| p.title}
     end
 
     # test scope for_user...

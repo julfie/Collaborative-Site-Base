@@ -65,7 +65,7 @@ class UserTest < ActiveSupport::TestCase
 
     # test scope alphabetical...
     should "show three users in alphabetical order" do
-      assert_equal ["Ev", "Evan", "Jim", "Joe"], User.alphabetical.map{|u| u.first_name}
+      assert_equal ["Evan", "Joe", "Jim", "Ev"], User.alphabetical.map{|u| u.first_name}
     end
 
     # test scope active...

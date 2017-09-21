@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 	has_many :project_roles
 
 	# scopes
-	scope :alphabetical, -> { order('first_name') }
+	scope :alphabetical, -> { order('last_name').order('first_name') }
 	scope :active, -> { where(active: true) }
 	scope :inactive, -> { where(active: false) }
 	scope :search, ->(term) { where('first_name LIKE lower(?) OR last_name LIKE lower(?)', "#{term.downcase}%", "#{term.downcase}%") }
