@@ -1,6 +1,23 @@
 module Contexts   
   module Users
     # Context for both customer and employee users
+
+     def create_users
+      @evan = FactoryGirl.create(:user)
+      @ev = FactoryGirl.create(:user, f_name: "Ev", l_name: "Smith", username: "esmith", email: "esmith@esmith.com", phone: "412.214.4124", active: false)
+      @joe = FactoryGirl.create(:user, f_name: "Joe", l_name: "Shmoe", username: "jshmoe", email: "jshmoe@cmuis.net", phone: "(443) 410-4122")
+      @jim = FactoryGirl.create(:user, f_name: "Jim", l_name: "Sim", username: "jsim", email: "jsim@andrew.cmu.edu")
+      @juliann = FactoryGirl.create(:user, f_name: "Juliann", l_name: "Fields", username: "jbfields", email: "jbfields@andrew.cmu.edu")
+    end
+
+    def destroy_users
+      @evan.destroy
+      @ev.destroy
+      @joe.destroy
+      @jim.destroy
+      @juliann.destroy
+    end
+
     def create_artists_users
       @bobby   = FactoryGirl.create(:user, f_name: "Bobby", l_name: "Barnes", username: "bbarnes", phone: "893-268-2323", email: 'bbarnes@gmail.com')
       @obeezy   = FactoryGirl.create(:user, f_name: "Obeezy", l_name: "Eezy", username: "obeezy", phone: "347-268-2323", email: 'obeezy@gmail.com')
