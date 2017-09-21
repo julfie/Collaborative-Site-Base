@@ -56,11 +56,11 @@ class UserTest < ActiveSupport::TestCase
     # test create...
     should "properly create factories" do
       assert_equal "Evan", @evan.first_name
-      assert_equal "Ev", @john.first_name
+      assert_equal "Ev", @ev.first_name
       assert_equal "Joe", @joe.first_name
       assert @evan.active
       assert @joe.active
-      deny @john.active
+      deny @ev.active
     end
 
     # test scope alphabetical...

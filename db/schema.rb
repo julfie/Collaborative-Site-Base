@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170920175124) do
   end
 
   create_table "projects", force: :cascade do |t|
+    t.integer "owner_id"
     t.string  "title"
     t.integer "user_id"
     t.string  "category"

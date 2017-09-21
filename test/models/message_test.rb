@@ -8,7 +8,6 @@ class MessageTest < ActiveSupport::TestCase
   # validation macros...
   should validate_presence_of(:subject)
   should validate_presence_of(:body)
-  should validate_inclusion_of(:read_status).in_array([true,false])
 
   # validating subject...
   should allow_value("Project Invite").for(:subject)
@@ -65,7 +64,7 @@ class MessageTest < ActiveSupport::TestCase
 
     # test scope chronological...
     should "show three messages in chronological order by send_date received" do
-      assert_equal ["Project Invite", "Thanks", "Greetings"], Message.chronological.map{|m| m.subject}
+      assert_equal ["Project Invite", "Greetings", "Thanks"], Message.chronological.map{|m| m.subject}
     end
 
     # test scope read...

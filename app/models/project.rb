@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
 	before_save :is_ended?
 	# relationships
-	#belongs_to :owner, class:User, foreign_key :owner_id
+	belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
 	has_many :project_roles
 	has_many :roles, through: :project_roles
 	has_many :users, through: :project_roles
@@ -11,10 +11,10 @@ class Project < ActiveRecord::Base
 	scope :chronological, -> { order('start_date') }
 	scope :active, -> { where('status = ?', 'active') }
 	scope :completed, -> { where('status = ?', 'finished') }
-	scope :for_owner, -> (owner_id) { where('owner_id = ?', owner_id) }
+	scope :for_owner, -> (owner_id) { where("owner_id = ?", owner_id)}
 	scope :for_category, -> (category) { where('category = ?', category) }
 	scope :for_genre, -> (genre) { where('genre = ?', genre) }
-	scope :for_title, -> (title) { where('title LIKE ?', title) }
+	scope :for_title, -> (title) { where("title LIKE ?", title)}
 
 	# validations
 	validates_presence_of :title
@@ -23,25 +23,26 @@ class Project < ActiveRecord::Base
 	validates_presence_of :category
 	validates_uniqueness_of :title, :scope => :owner
 	validates_inclusion_of :status, in: %w[active hiatus finished cancelled], message: "is not a valid option"
-	validates_inclusion_of :preview_level, in: %w[hidden by_invitation preview public], message: "is not a valid option"
-	validates_date :start_date, on_or_before: Date.today
-	validates_date :end_date, after: :start_date, message: "end date cannot be fore start date"
+	validates_inclusion_of :preview_level, in: %w[hidden by_invitation preview published], message: "is not a valid option"
+	validates_date :start_date, on_or_before:  lambda { Date.current }
+    validates_date :end_date, after: :start_date, allow_blank: true
 
-	private
+	def length
+		return (self.end_date - self.start_date).to_i
+	end
 
-	def set_status(new_status)
-		self.status = new_status
+	def is_finished?
+		return self.status == "finished" && self.end_date.nil?
+	end
+
+	def is_cancelled?
+		return self.status == "cancelled" && self.end_date.nil?
 	end
 
 	def is_ended?
-		if self.status == "completed" && self.end_date.nil?
+		if is_finished? or is_cancelled?
 			self.end_date = Date.today
-		elsif self.status == "cancelled" && self.end_date.nil?
-			self.end_date = Date.today
+			self.save!
 		end
-	end
-
-	def length
-		(end_date - start_date).to_i
 	end
 end

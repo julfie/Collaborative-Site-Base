@@ -11,6 +11,8 @@ FactoryGirl.define do
 		title "Tell Me"
 		category "Music"
 		genre "Electronic"
+		status "active"
+		preview_level "hidden"
 		start_date Date.today
 	end
 
