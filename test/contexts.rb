@@ -7,12 +7,12 @@ require './test/sets/project_roles'
 require './test/sets/messages'
 
 module Contexts
-  # explicitly include all sets of contexts used for testing 
+  # explicitly include all sets of contexts used for testing
   include Contexts::UserRoles
   include Contexts::Roles
   include Contexts::Users
   include Contexts::Projects
-  include Contexts::Project_Roles
+  include Contexts::ProjectRoles
   include Contexts::Messages
 
 end

@@ -16,14 +16,13 @@ FactoryGirl.define do
     description "Creator of the project"
     active true
   end
-  
+
   factory :user_role do
     association :role
-    association :user 
+    association :user
   end
 
   factory :project do
-    owner_id @bobby
     proj_description "A girl who pretends to be a boy because dragons and destiny"
     genre "fantasy"
     title "Eon"
@@ -34,9 +33,6 @@ FactoryGirl.define do
   end
 
   factory :project_role do
-    project_id @Eon
-    role_id @editor
-    user_id @jim
     invite_num 1
   end
 
@@ -47,6 +43,6 @@ FactoryGirl.define do
     send_date Date.today
     flagged false
   end
-  
+
 
 end

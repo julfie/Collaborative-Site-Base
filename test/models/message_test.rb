@@ -24,19 +24,19 @@ class MessageTest < ActiveSupport::TestCase
   # Contexts
 
   context "Creating context for message" do
-    
-    setup do 
+
+    setup do
       create_users
       create_messages
     end
 
-    teardown do 
+    teardown do
       destroy_users
       destroy_messages
     end
 
     # test create...
-    should "properly create factories" do 
+    should "properly create factories" do
       assert_equal "Greetings", @greetings.subject
       assert_equal false, @thanks.read_status
     end
@@ -48,8 +48,7 @@ class MessageTest < ActiveSupport::TestCase
 
     # test scope for_username
     should "test scope for_username" do
-      assert_equal ["Greetings"], Message.for_username("ebyrd").map{|m| m.subject}.sort
-      assert_equal ["Thanks"], Message.for_username("esmith").map{|m| m.subject}.sort
+      assert_equal ["Greetings"], Message.for_username("eman").map{|m| m.subject}.sort
     end
 
     # add by_subject
@@ -60,7 +59,7 @@ class MessageTest < ActiveSupport::TestCase
     # add for_keyword (subject & body)
     should "test scope for_keyword" do
       assert_equal ["Project Invite"], Message.for_keyword("project").map{|m| m.subject}.sort
-      assert_equal ["Greetings", "Project Invite", "Thanks"], Message.for_keyword("hello").map{|m| m.subject}.sort
+      assert_equal ["Project Invite", "Thanks"], Message.for_keyword("hello").map{|m| m.subject}.sort
     end
 
     # test scope chronological...
@@ -83,9 +82,9 @@ class MessageTest < ActiveSupport::TestCase
       assert_equal ["Project Invite"], Message.flagged.map{|m| m.subject}.sort
     end
 
-    # invite code generator (create new code, 
-    #code doesn't change on update, 
+    # invite code generator (create new code,
+    #code doesn't change on update,
     #run on before_create not before_save)
-    
+
   end
 end
