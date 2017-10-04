@@ -45,6 +45,8 @@ gem 'time_date_helpers'
 
 gem 'validates_timeliness', '~> 4.0'
 
+gem 'simple_form'
+
 # Additional gems that are very useful in Rails development
 group :development do
 	gem 'quiet_assets'
