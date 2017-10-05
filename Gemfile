@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '3.1.11'
 
 # Other gems used
+gem 'jquery-turbolinks'
+gem 'materialize-sass'
 gem 'doorkeeper'
 gem 'time_date_helpers'
 gem 'validates_timeliness'

@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
     validates_presence_of :category
     validates_uniqueness_of :title
     validates_inclusion_of :status, in: %w[active hiatus finished cancelled], message: "is not included in list of accepted status"
-    validates_inclusion_of :preview_level, in: %w[hidden by_invitation preview published], message: "is not included in list of accepted preview levels"
+    validates_inclusion_of :preview_level, in: %w[hidden by_invitation preview], message: "is not included in list of accepted preview levels"
     validates_date :start_date, on_or_before:  lambda { Date.current }
     validates_date :end_date, after: :start_date, allow_blank: true
     validate :is_unique_project?

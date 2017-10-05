@@ -18,6 +18,14 @@ Rails.application.routes.draw do
   resources :roles
   resources :user_roles
   resources :users
+
+
+# Sessions
+# resources :sessions
+# get 'user/edit' => 'users#edit', :as => :edit_current_user
+# get 'signup' => 'users#new', :as => :signup
+# get 'login' => 'sessions#new', :as => :login
+# get 'logout' => 'sessions#destroy', :as => :logout
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
