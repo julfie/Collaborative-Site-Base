@@ -5,10 +5,10 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    @artists = @users.user_role.map { |ur| ur.role_id == @artists }
-    @mixer = @users.user_role.map { |ur| ur.role_id == @mixer }
-    @producer = @users.user_role.map { |ur| ur.role_id == @producer }
-    @instrumentalist = @users.user_role.map { |ur| ur.role_id == @instrumentalist }
+    # @artists = @user.user_roles.map { |ur| ur.role_id == @artists }
+    # @mixer = @user.user_roles.map { |ur| ur.role_id == @mixer }
+    # @producer = @user.user_roles.map { |ur| ur.role_id == @producer }
+    # @instrumentalist = @user.user_roles.map { |ur| ur.role_id == @instrumentalist }
 
   end
 
@@ -17,7 +17,6 @@ class UsersController < ApplicationController
   def show
     @projects_roles = User.projects_roles
     @projects = User.projects_roles.map { |pr| pr.projects  }
-    #@messages = 
 
   end
 

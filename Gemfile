@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '3.1.11'
 
 # Other gems used
+gem 'doorkeeper'
 gem 'time_date_helpers'
 gem 'validates_timeliness'
 gem 'cancancan', '1.15.0'

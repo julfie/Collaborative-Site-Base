@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  use_doorkeeper
+  get 'home/home'
+
+  get 'home/about'
+
+  get 'home/privacy'
+
+  get 'home/contact'
+
+  get 'home/about'
+
+  get 'home/privacycontact'
+
   resources :projects
   resources :project_roles
   resources :messages
