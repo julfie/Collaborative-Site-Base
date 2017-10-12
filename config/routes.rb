@@ -12,20 +12,30 @@ Rails.application.routes.draw do
 
   get 'home/privacycontact'
 
+  root :to => "home#home", as: :home
+
   resources :projects
   resources :project_roles
   resources :messages
   resources :roles
   resources :user_roles
   resources :users
+  resources :sessions
 
+  # Authentication routes
+  #Login Stuff
+  get 'user/edit' => 'users#edit', :as => :edit_current_user
+  get 'signup' => 'users#new', :as => :signup
+  get 'login' => 'sessions#new', :as => :login
+  get 'logout' => 'sessions#destroy', :as => :logout
 
-# Sessions
-# resources :sessions
-# get 'user/edit' => 'users#edit', :as => :edit_current_user
-# get 'signup' => 'users#new', :as => :signup
-# get 'login' => 'sessions#new', :as => :login
-# get 'logout' => 'sessions#destroy', :as => :logout
+  # Semi-static page routes
+  get 'about' => 'home#about', as: :about
+  get 'contact' => 'home#contact', as: :contact
+  get 'privacy' => 'home#privacy', as: :privacy
+
+  root :to => 'home#home' 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

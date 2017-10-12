@@ -1,0 +1,31 @@
+<nav>
+      <div class="nav-wrapper  blue lighten-2">
+      <!-- rails stuff -->
+         <a href="#" class="brand-logo center"><i class="material-icons">cloud</i>The Lab</a>
+
+
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if !logged_in? %>
+            <li><%= link_to 'Home', home_path %></li>
+            <li><%= link_to 'Create User', new_user_path %></li>
+            <li><%= link_to 'Login', login_path %></li>
+
+          
+
+          <% elsif logged_in?%>
+              
+              <li><%= link_to 'Feed', home_path %></li>
+              <li><%= link_to 'My Account', user_path(current_user) %></li>
+              <li><%= link_to 'Projects', projects_path %></li>
+              <li><%= link_to 'Messages', messages_path %></li>
+              <li><%= link_to 'Logout', logout_path %></li>
+
+          <% end %>
+        </ul>
+
+
+
+
+      </div>
+    </nav>

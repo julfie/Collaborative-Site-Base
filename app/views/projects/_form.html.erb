@@ -1,15 +1,75 @@
-<%= simple_form_for(@project) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
+  <!-- error handling -->
+  <% if @project.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+    
+    <ul>
+      <% @project.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 
-  <div class="form-inputs">
-    <%= f.input :proj_description %>
-    <%= f.input :title %>
-    <%= f.input :category %>
-    <%= f.input :status, collection: ["active", "hiatus", "finished", "cancelled"] %>
-    <%= f.input :preview_level, collection: ["hidden", "by_invitation", "preview"] %>
+<div class="container">
+  <div class="section">
+      <form class="col s12">
+
+        <div class="row">
+            <div class="input-field col s12">
+              <%= f.input :title, :params => :title %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+              <%= f.input :proj_description, :params => :proj_description %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+              <%= f.input :category, :params => :category %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+              <%= f.input :genre, :params => :genre %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+              <%= f.input :proj_description, class:"materialize-textarea", :'data-length' => 200 %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+              <%= f.input :preview_level, collection: ["hidden", "by_invitation", "preview"] %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+              <%= f.input :status, collection: [["active", "active"], ["hiatus", "hiatus"], ["finished","finished"], ["cancelled","cancelled"]] %>
+            </div>
+        </div>
+
+        <div class="form-actions row">
+          <div class="waves-effect waves-light btn right blue lighten-2">  
+            <%= f.submit nil, :class => 'button radius' %>
+          </div>
+          <div class="waves-effect waves-light btn left blue lighten-2">
+              <%= link_to 'Back', projects_path %>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <br><br>
+  
 <% end %>

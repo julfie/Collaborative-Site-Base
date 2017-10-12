@@ -1,22 +1,53 @@
 <%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> User</legend>
+<div class="container">
 
-		<%= f.input :f_name, prompt: "First Name" %>
-		<%= f.input :l_name, prompt: "Last Name" %>
-    <%= f.input :username, prompt: "Username" %>
-		<%= f.input :email, prompt: "Email" %>
-    <%= f.input :phone, prompt: "Phone Number" %>
+  <div class="divider"></div>
+  <br><br>
 
-		<%= f.input :password, prompt: "Create a Password" %>
-		<%= f.input :password_confirmation, prompt: "Confirm Password" %>
-
-		<%= f.input :active%>
-
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel',users_path, :class => 'button alert radius' %>
-    </div>
-  </fieldset>
+  <div class="section">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.input :f_name, :params => :f_name %>
+        </div>
+        <div class="input-field col s6">
+          <%= f.input :l_name, :params => :l_name %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.input :username, :params => :username %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.input :email, :params => :email %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.input :phone, :params => :phone %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.input :password, :params => :password %>
+        </div>
+        <div class="input-field col s6">
+          <%= f.input :password_confirmation, :params => :password_confirmation %>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <div class="waves-effect waves-light btn right blue lighten-2"><%= f.submit %></div>
+        <div class="waves-effect waves-light btn left blue lighten-2"><%= link_to 'Cancel', root_path %></div>
+      </div>
+    </form>
+  </div>
+  <br><br><br><div class="divider"></div><br><br>
 <% end %>
+</div>

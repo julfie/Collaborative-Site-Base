@@ -22,12 +22,12 @@ class User < ActiveRecord::Base
 	  validates_presence_of :l_name
 	  validates :username, presence: true, uniqueness: { case_sensitive: false}
 	  validates_presence_of :password, on: :create
-  	  validates_presence_of :password_confirmation, on: :create
-  	  validates :email, presence: true, uniqueness: { case_sensitive: false}, format: { with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, message: "is not a valid format" }
-  	  validates :phone, format: { with: /\A\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}\z/, message: "should be 10 digits (area code needed) and delimited with dashes only", allow_blank: true }
+  	validates_presence_of :password_confirmation, on: :create
+  	validates :email, presence: true, uniqueness: { case_sensitive: false}, format: { with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, message: "is not a valid format" }
+  	validates :phone, format: { with: /\A\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}\z/, message: "should be 10 digits (area code needed) and delimited with dashes only", allow_blank: true }
 
-  	  validates_confirmation_of :password, message: "doesn't match confirmation"
-  	  validates_length_of :password, minimum: 6
+  	validates_confirmation_of :password, message: "doesn't match confirmation"
+  	validates_length_of :password, minimum: 6
 
 
 	  # Methods
@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     	phone.gsub!(/[^0-9]/,"") # strip all non-digits
     	self.phone = phone       # reset self.phone to new string
 	  end
+
+	  def name
+    	"#{f_name} #{l_name}"
+  	  end
 
 
 

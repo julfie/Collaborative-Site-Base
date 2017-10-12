@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
   def home
+  	if !logged_in?
+  		render layout: 'landing_page'
+  	end
+  	
   end
 
   def about
